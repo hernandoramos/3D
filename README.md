@@ -1,4 +1,4 @@
-### Welcome to my Github page
+# Welcome to my Github page
 
 Not much to look here right now 
 
