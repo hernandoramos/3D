@@ -24,10 +24,9 @@
             texture.wrapS = THREE.RepeatWrapping;
             texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set( 1, 1 );
-			var material = new THREE.MeshPhongMaterial( { map: map, side: THREE.DoubleSide } );
-			object = new THREE.Mesh( new THREE.SphereGeometry( 75, 20, 10 ), material );
-				object.position.set( - 300, 0, 200 );
-				scene.add( object );
+            var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var cube = new THREE.Mesh( geometry, material, texture );
+            scene.add( cube );
 
 			camera.position.z = 5;
 
