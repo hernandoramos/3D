@@ -10,10 +10,22 @@
 	</head>
 	<body>
 		
-		<script src="js/three.js"></script>
+		<script src="../js/three.js"></script>
 		<script>
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+			// define a directional light
+			var luz01 = new THREE.DirectionalLight(0x404040, 2 );
+			luz01.position.x = - 0.5;
+			luz01.position.y = - 0.5;
+			luz01.position.z = - -3.5;
+			luz01.position.normalize();
+			// Put luz01 in the scene
+			scene.add(luz01);
+			// Add a ambient light 
+			var sol = new THREE.AmbientLight (0x404040);
+
+			scene.add(sol);
 
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
@@ -21,12 +33,12 @@
 
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
             // load a texture, set wrap mode to repeat
-            var texture = new THREE.TextureLoader().load( 'assets/AkuTwitter.jpg' );
-            texture.wrapS = THREE.RepeatWrapping;
-            texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set( 1, 1 );
-            var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var cube = new THREE.Mesh( geometry, material, texture );
+            // var texture = new THREE.TextureLoader().load( 'assets/AkuTwitter.jpg' );
+            // texture.wrapS = THREE.RepeatWrapping;
+            // texture.wrapT = THREE.RepeatWrapping;
+            // texture.repeat.set( 1, 1 );
+            var material = new THREE.MeshPhongMaterial( {color: 0x00ff00, specular: 0x009900, shininess: 30,} );
+			var cube = new THREE.Mesh( geometry, material, );
             scene.add( cube );
 
 			camera.position.z = 5;
