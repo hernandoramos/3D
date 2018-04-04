@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TRHEEjs GLtf model loader</title>
+        <style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+    <script src="../js/three.min.js"></script>
+
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+        // define a directional light
+		var luz01 = new THREE.DirectionalLight(0x404040, 2 );
+		luz01.position.x = - 0.5;
+		luz01.position.y = - 0.5;
+		luz01.position.z = - -3.5;
+		luz01.position.normalize();
+		// Put luz01 in the scene
+		scene.add(luz01);
+		// Add an ambient light 
+		var sol = new THREE.AmbientLight (0x404040);
+		// add sol to the scene
+		scene.add(sol);
+        var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+        
+        // GLtf model loader
+        var loader = new THREE.GLTFLoader();
+        // Load a glTF resource
+        loader.load(
+	    // resource URL
+	    '../assets/mono.gltff',
+	    // called when the resource is loaded
+	    function ( gltf ) {
+
+		    scene.add( gltf.scene );
+
+		    gltf.animations; // Array<THREE.AnimationClip>
+		    gltf.scene; // THREE.Scene
+		    gltf.scenes; // Array<THREE.Scene>
+		    gltf.cameras; // Array<THREE.Camera>
+		    gltf.asset; // Object
+
+	    },
+	// called when loading is in progresses
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.log( 'An error happened' );
+
+	}
+);
+
+        // Add camera to scene
+        camera.posotion.z = 5;
+
+        renderer.render(scene, camera);
+
+			animate();
+    </script>
+</body>
+</html>
