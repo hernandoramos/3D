@@ -21,7 +21,7 @@
 			luz01.position.normalize();
 			// Put luz01 in the scene
 			scene.add(luz01);
-			// Add an ambient light 
+			// Add an ambient light
 			var sol = new THREE.AmbientLight (0x404040);
 			// add sol to the scene
 			scene.add(sol);
@@ -30,7 +30,7 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
-			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			var geometry = new THREE.BoxGeometry( 2, 2, 2);
             // load a texture, set wrap mode to repeat
             // var texture = new THREE.TextureLoader().load( 'assets/AkuTwitter.jpg' );
             // texture.wrapS = THREE.RepeatWrapping;
